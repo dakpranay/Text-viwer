@@ -38,22 +38,18 @@ function App() {
   }
 
   return (
-
     <>
-      <Navbar title="MYAPP" mode={mode} toggleMode={toggleMode} />
-      <Alert alert={alert} />
-      <div className="container">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Navbar title="MYAPP" mode={mode} toggleMode={toggleMode} />
+        <Alert alert={alert} />
+        <div className="container">
           <Routes>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path='/'>
-              <Textform heading="My APP" mode={mode} showAlert={showAlert} />
-            </Route>
+            <Route exact path="/about" element={<About />} />
+            <Route exact path="/" element={<Textform heading="My APP" mode={mode} showAlert={showAlert} />} />
           </Routes>
-        </BrowserRouter>
-      </div>
+        </div>
+      </BrowserRouter>
+
     </>
 
   );

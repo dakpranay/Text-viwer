@@ -17,8 +17,7 @@ export default function Textform(props) {
     }
 
     const handlecopytext = ()=>{
-        navigator.clipboard.writeText(text)
-        
+        navigator.clipboard.writeText(text)        
     }
 
     const handelloClick = ()=>{
