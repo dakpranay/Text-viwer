@@ -29,7 +29,6 @@ function About() {
         backgroundColor:'black',
     })
     setBtnText("Enable Light Mode")
-   
    }
    console.log(mystyle.color)
 

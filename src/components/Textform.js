@@ -9,6 +9,7 @@ export default function Textform(props) {
 
     const handelUpClick = ()=>{
         setText(text.toUpperCase())
+        props.showAlert("Converted to uppercase!","success")
     }
 
     const handelClClick = ()=>{
