@@ -1,51 +1,62 @@
+import './App.css'
 import Navbar from './components/Navbar';
 import Textform from './components/Textform';
 import About from './components/About';
-import React,{ useState } from 'react';
+import React, { useState } from 'react';
 import Alert from './components/Alert';
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
 
-  const [mode,setMode]=useState('light')
-  const [alert,setAlert] =useState(null)
+  const [mode, setMode] = useState('light')
+  const [alert, setAlert] = useState(null)
 
-  const showAlert = (message,type)=>{
+  const showAlert = (message, type) => {
     setAlert({
-      msg:message,
-      type:type
+      msg: message,
+      type: type
     })
-    setTimeout(()=>{
+    setTimeout(() => {
       setAlert(null)
-    },2000)
+    }, 2000)
   }
 
-  const toggleMode = () =>{
+  const toggleMode = () => {
     console.log("toogle")
-    if(mode==="light"){
+    if (mode === "light") {
       setMode("dark")
-      document.body.style.backgroundColor='#042743'
-      showAlert("Dark mode has been enabled","success")
-    }else{
+      document.body.style.backgroundColor = '#042743'
+      showAlert("Dark mode has been enabled", "success")
+      document.title = 'TextApp-Home(dark)'
+    } else {
       setMode("light")
-      document.body.style.backgroundColor='white'
-      showAlert("Light mode has been enabled","success")
+      document.body.style.backgroundColor = 'white'
+      showAlert("Light mode has been enabled", "success")
+      document.title = 'TextApp-Home'
+
     }
-  } 
+  }
 
   return (
-    <>
-      <Navbar title="MYAPP" mode={mode}  toggleMode={toggleMode}/>
-      <Alert alert={alert}/>
-      <div className="container">
-        <Textform heading="My APP" mode={mode} showAlert={showAlert}/>
-      </div>
-      {/* <About/> */}
 
+    <>
+      <Navbar title="MYAPP" mode={mode} toggleMode={toggleMode} />
+      <Alert alert={alert} />
+      <div className="container">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/about">
+              <About />
+            </Route>
+            <Route path='/'>
+              <Textform heading="My APP" mode={mode} showAlert={showAlert} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
     </>
+
   );
 }
-
-
 
 export default App;
